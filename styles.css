@@ -1,3 +1,31 @@
+:root {
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    --subtitle-color: #666666;
+    --border-color: #eeeeee;
+    --border-light: #f0f0f0;
+    --link-color: #0066cc;
+    --tag-color: #666666;
+    --tag-hover: #333333;
+    --tech-color: #555555;
+    --tooltip-bg: #333333;
+    --tooltip-text: #ffffff;
+}
+
+[data-theme="dark"] {
+    --bg-color: #1a1a1a;
+    --text-color: #e0e0e0;
+    --subtitle-color: #999999;
+    --border-color: #333333;
+    --border-light: #2a2a2a;
+    --link-color: #4da6ff;
+    --tag-color: #999999;
+    --tag-hover: #cccccc;
+    --tech-color: #b0b0b0;
+    --tooltip-bg: #333333;
+    --tooltip-text: #ffffff;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -7,13 +35,15 @@
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     line-height: 1.6;
-    color: #333;
+    color: var(--text-color);
+    background-color: var(--bg-color);
     max-width: 800px;
     margin: 0 auto;
     padding: 2rem;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 main {
@@ -31,7 +61,7 @@ h1 {
 }
 
 .subtitle {
-    color: #666;
+    color: var(--subtitle-color);
     margin-bottom: 3rem;
 }
 
@@ -42,14 +72,14 @@ h1 {
 h2 {
     margin-bottom: 1.5rem;
     font-size: 1.5rem;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--border-color);
     padding-bottom: 0.5rem;
 }
 
 .project {
     margin-bottom: 2rem;
     padding-bottom: 2rem;
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 1px solid var(--border-light);
 }
 
 .project:last-child {
@@ -62,7 +92,7 @@ h2 {
 }
 
 .project-meta {
-    color: #666;
+    color: var(--subtitle-color);
     font-size: 0.9rem;
     margin-bottom: 0.5rem;
 }
@@ -73,7 +103,7 @@ h2 {
 
 .project-tech {
     font-size: 0.9rem;
-    color: #555;
+    color: var(--tech-color);
 }
 
 .project-tags {
@@ -87,13 +117,13 @@ h2 {
     position: relative;
     display: inline-flex;
     align-items: center;
-    color: #666;
+    color: var(--tag-color);
     transition: color 0.3s ease;
     cursor: help;
 }
 
 .tag:hover {
-    color: #333;
+    color: var(--tag-hover);
 }
 
 .tag i {
@@ -105,8 +135,8 @@ h2 {
     bottom: 100%;
     left: 50%;
     transform: translateX(-50%);
-    background: #333;
-    color: white;
+    background: var(--tooltip-bg);
+    color: var(--tooltip-text);
     padding: 0.25rem 0.5rem;
     border-radius: 3px;
     font-size: 0.8rem;
@@ -124,7 +154,7 @@ h2 {
     left: 50%;
     transform: translateX(-50%);
     border: 4px solid transparent;
-    border-top-color: #333;
+    border-top-color: var(--tooltip-bg);
 }
 
 .tag:hover .tooltip {
@@ -132,7 +162,7 @@ h2 {
 }
 
 a {
-    color: #0066cc;
+    color: var(--link-color);
     text-decoration: none;
 }
 
@@ -143,21 +173,60 @@ a:hover {
 .contact {
     margin-top: 3rem;
     padding-top: 2rem;
-    border-top: 1px solid #eee;
+    border-top: 1px solid var(--border-color);
     text-align: center;
 }
 
 .contact a {
     margin: 0 1rem;
-    color: #666;
+    color: var(--subtitle-color);
     transition: color 0.3s ease;
 }
 
 .contact a:hover {
-    color: #333;
+    color: var(--text-color);
     text-decoration: none;
 }
 
 .contact i {
     font-size: 1.5rem;
+}
+
+.theme-toggle {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: 2px solid var(--text-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: var(--text-color);
+}
+
+.theme-toggle:hover {
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.theme-toggle i {
+    font-size: 1.2rem;
+    transition: opacity 0.3s ease;
+}
+
+.theme-toggle i:last-child {
+    position: absolute;
+    opacity: 0;
+}
+
+[data-theme="dark"] .theme-toggle i:first-child {
+    opacity: 0;
+}
+
+[data-theme="dark"] .theme-toggle i:last-child {
+    opacity: 1;
 }
